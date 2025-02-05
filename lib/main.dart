@@ -67,16 +67,29 @@ class __TabsNonScrollableDemoState extends State<_TabsNonScrollableDemo>
     super.dispose();
   }
 
+  final TextEditingController _cityController = TextEditingController();
+  String cityName = "";
+  String temperature = "--";
+  String weather = "--";
+
+  void fetchWeather() {
+    setState(() {
+      cityName = _cityController.text;
+      temperature = "";
+      weather = "";
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
 // For the ToDo task hint: consider defining the widget and name of the tabs here
-    final tabs = ['Tab 1', 'Tab 2', 'Tab 3', 'New Tab'];
+    final tabs = ['Tab 1', 'Tab 2', 'Tab 3', 'New Test'];
 
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Text(
-          'Hello',
+          'The Weather Channel',
         ),
         bottom: TabBar(
           controller: _tabController,
@@ -86,15 +99,28 @@ class __TabsNonScrollableDemoState extends State<_TabsNonScrollableDemo>
           ],
         ),
       ),
-      body: TabBarView(
-        controller: _tabController,
-        children: [
-// hint for the to do task:Considering creating the different for different tabs
-          for (final tab in tabs)
-            Center(
-              child: Text(tab),
+      body: Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Enter city name',
+              ),
             ),
-        ],
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: fetchWeather,
+              child: Text("Fetch Weather"),
+            ),
+            SizedBox(height: 32.0),
+            Text("City: $cityName", style: TextStyle(fontSize: 18)),
+            Text("Temperature: $temperature", style: TextStyle(fontSize: 18)),
+            Text("Condition: $weather", style: TextStyle(fontSize: 18)),
+          ],
+        ),
       ),
     );
   }
