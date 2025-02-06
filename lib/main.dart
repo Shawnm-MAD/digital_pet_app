@@ -121,18 +121,24 @@ class __TabsNonScrollableDemoState extends State<_TabsNonScrollableDemo>
           ],
         ),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextField(
-              controller: cityname,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Enter city name:',
-              ),
-            ),
+body: TabBarView(
+  controller: _tabController,
+  children: List.generate(7, (index) {
+    return Padding(
+      padding: EdgeInsets.all(8.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text("City: $cityName", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          Text("Day: ${weekly[index]['day']}", style: TextStyle(fontSize: 18)),
+          Text("Temperature: ${weekly[index]['temperature']}", style: TextStyle(fontSize: 18)),
+          Text("Condition: ${weekly[index]['condition']}", style: TextStyle(fontSize: 18)),
+        ],
+      ),
+    );
+  }),
+),
+
             SizedBox(height: 10),
             ElevatedButton(
               onPressed: fetchWeather,
@@ -145,6 +151,7 @@ class __TabsNonScrollableDemoState extends State<_TabsNonScrollableDemo>
             ),
             SizedBox(height: 32.0),
             Text("City: $cityName", style: TextStyle(fontSize: 18)),
+            Text("Day: ${weekly[index]['day']}", style: TextStyle(fontSize: 18)),
             Text("Temperature: $temperature", style: TextStyle(fontSize: 18)),
             Text("Condition: $weather", style: TextStyle(fontSize: 18)),
           ],
