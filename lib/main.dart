@@ -49,7 +49,7 @@ class __TabsNonScrollableDemoState extends State<_TabsNonScrollableDemo>
     _tabController = TabController(
       //number of tabs we have
       initialIndex: 0,
-      length: 4,
+      length: 7,
       vsync: this,
     );
     _tabController.addListener(() {
@@ -71,6 +71,7 @@ class __TabsNonScrollableDemoState extends State<_TabsNonScrollableDemo>
   String temperature = "";
   String weather = "";
   List<String> weatherstates = ["Sunny", "Cloudy", "Rainy"];
+  List<Map<String, String>> weekly = [];
 
   void fetchWeather() {
     final random = Random();
@@ -81,10 +82,32 @@ class __TabsNonScrollableDemoState extends State<_TabsNonScrollableDemo>
     });
   }
 
+  void forecast() {
+    final random = Random();
+    setState(() {
+      cityName = cityname.text.trim();
+      weekly = List.generate(7, (index) {
+        return {
+          "day": "Day ${index + 1}",
+          "temperature": "${random.nextInt(16) + 15}°C",
+          "condition": weatherstates[random.nextInt(weatherstates.length)],
+        };
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
 // For the ToDo task hint: consider defining the widget and name of the tabs here
-    final tabs = ['Tab 1', 'Tab 2', 'Tab 3', 'New Test'];
+    final tabs = [
+      'Day 1',
+      'Day 2',
+      'Day 3',
+      'Day 4',
+      'Day 5',
+      'Day 6',
+      'Day 7'
+    ];
 
     return Scaffold(
       appBar: AppBar(
@@ -116,6 +139,11 @@ class __TabsNonScrollableDemoState extends State<_TabsNonScrollableDemo>
             ElevatedButton(
               onPressed: fetchWeather,
               child: Text("Fetch Weather"),
+            ),
+            SizedBox(height: 32.0),
+            ElevatedButton(
+              onPressed: forecast,
+              child: Text("7 Day Forecast"),
             ),
             SizedBox(height: 32.0),
             Text("City: $cityName", style: TextStyle(fontSize: 18)),
