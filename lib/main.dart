@@ -86,14 +86,12 @@ class __TabsNonScrollableDemoState extends State<_TabsNonScrollableDemo>
     final random = Random();
     setState(() {
       cityName = cityname.text.trim();
-      weekly = List.generate(7, (index) {
-        return {
+      weekly = List.generate(7, (index) => {
           "day": "Day ${index + 1}",
           "temperature": "${random.nextInt(16) + 15}°C",
-          "condition": weatherstates[random.nextInt(weatherstates.length)],
-        };
+          "conditions": weatherstates[random.nextInt(weatherstates.length)],
+        });
       });
-    });
   }
 
   @override
