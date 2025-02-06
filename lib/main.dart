@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
-//Creating tab interface with scrollable tabs
-
 void main() {
   runApp(MyApp());
 }
