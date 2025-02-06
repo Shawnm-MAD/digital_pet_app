@@ -74,6 +74,17 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
               ],
             ), 
           ),
-      );
+
+      body: TabBarView(
+        controller: _tabController,
+        children: const [
+          PetStatesScreen(state: "Happy", description: "Your pet is feeling quited excited and energized!" ),
+          PetStatesScreen(state: "Hungry", description: "Your pet is famished! It's time to feed it."),
+          PetStatesScreen(state: "Thirsty", description: "Your pet is wandering for some water! Give it some. "),
+          PetStatesScreen(state: "Sleeping", description:"Your dog is taking some nice peaceful rest."),
+          PetStatesScreen(state: "Sad", description:"Your dog is very afraid and wary, cheer it up"),
+        ],
+      ),
+    );  
   }
 }
