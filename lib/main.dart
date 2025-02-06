@@ -66,12 +66,14 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
        bottom: TabBar(
           controller: _tabController,
           tabs: const [
-            Tab(text: "Bruno"),
-            Tab(text: "Lola"),
-            Tab(text: "Charlie"),
+            Tab(text: "Happy"),
+            Tab(text: "Hungry"),
+            Tab(text: "Thirsty"),
+            Tab(text: "Sleeping"),
+            Tab(text: "Sad"),
               ],
             ), 
           ),
-      ),
+      );
   }
 }
