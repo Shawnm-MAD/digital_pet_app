@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 //Creating tab interface with scrollable tabs
 
@@ -67,16 +68,18 @@ class __TabsNonScrollableDemoState extends State<_TabsNonScrollableDemo>
     super.dispose();
   }
 
-  final TextEditingController _cityController = TextEditingController();
+  final TextEditingController cityname = TextEditingController();
   String cityName = "";
-  String temperature = "--";
-  String weather = "--";
+  String temperature = "";
+  String weather = "";
+  List<String> weatherstates = ["Sunny", "Cloudy", "Rainy"];
 
   void fetchWeather() {
+    final random = Random();
     setState(() {
-      cityName = _cityController.text;
-      temperature = "";
-      weather = "";
+      cityName = cityname.text.trim();
+      temperature = "${random.nextInt(16) + 15}°C";
+      weather = weatherstates[random.nextInt(weatherstates.length)];
     });
   }
 
@@ -105,6 +108,7 @@ class __TabsNonScrollableDemoState extends State<_TabsNonScrollableDemo>
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextField(
+              controller: cityname,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: 'Enter city name',
