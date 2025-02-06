@@ -78,13 +78,21 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
       body: TabBarView(
         controller: _tabController,
         children: const [
-          PetStatesScreen(state: "Happy", description: "Your pet is feeling quited excited and energized!" ),
-          PetStatesScreen(state: "Hungry", description: "Your pet is famished! It's time to feed it."),
-          PetStatesScreen(state: "Thirsty", description: "Your pet is wandering for some water! Give it some. "),
-          PetStatesScreen(state: "Sleeping", description:"Your dog is taking some nice peaceful rest."),
-          PetStatesScreen(state: "Sad", description:"Your dog is very afraid and wary, cheer it up"),
+          PetStateScreen(state: "Happy", description: "Your pet is feeling quited excited and energized!" ),
+          PetStateScreen(state: "Hungry", description: "Your pet is famished! It's time to feed it."),
+          PetStateScreen(state: "Thirsty", description: "Your pet is wandering for some water! Give it some. "),
+          PetStateScreen(state: "Sleeping", description:"Your dog is taking some nice peaceful rest."),
+          PetStateScreen(state: "Sad", description:"Your dog is very afraid and wary, cheer it up"),
         ],
       ),
     );  
   }
+}
+
+class PetStateScreen extends StatelessWidget {
+  final String state;
+  final String description;
+
+  const PetStateScreen({super.key, required this.state, required this.description});
+  
 }
