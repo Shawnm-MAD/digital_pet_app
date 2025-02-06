@@ -111,7 +111,7 @@ class __TabsNonScrollableDemoState extends State<_TabsNonScrollableDemo>
               controller: cityname,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                hintText: 'Enter city name',
+                hintText: 'Enter city name:',
               ),
             ),
             SizedBox(height: 10),
