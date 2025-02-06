@@ -50,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
   @override 
   void initState(){
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 5, vsync: this);
   }
   @override
   void dispose() {
@@ -78,11 +78,11 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
       body: TabBarView(
         controller: _tabController,
         children: const [
-          PetStateScreen(state: "Happy", description: "Your pet is feeling quited excited and energized!" ),
-          PetStateScreen(state: "Hungry", description: "Your pet is famished! It's time to feed it."),
-          PetStateScreen(state: "Thirsty", description: "Your pet is wandering for some water! Give it some. "),
-          PetStateScreen(state: "Sleeping", description:"Your dog is taking some nice peaceful rest."),
-          PetStateScreen(state: "Sad", description:"Your dog is very afraid and wary, cheer it up"),
+          PetStateScreen(state: "Happy", description: "Your pet is feeling quited excited and energized!",bgColor: Colors.yellowAccent,textColor:Colors.black ),
+          PetStateScreen(state: "Hungry", description: "Your pet is famished! It's time to feed it.",bgColor: Colors.orangeAccent,textColor:Colors.black ),
+          PetStateScreen(state: "Thirsty", description: "Your pet is wandering for some water! Give it some.",bgColor: Colors.blueAccent,textColor:Colors.white),
+          PetStateScreen(state: "Sleeping", description:"Your dog is taking some nice peaceful rest.",bgColor: Colors.pinkAccent,textColor:Colors.white),
+          PetStateScreen(state: "Sad", description:"Your dog is very afraid and wary, cheer it up.",bgColor: Colors.grey,textColor:Colors.white ),
         ],
       ),
     );  
@@ -92,29 +92,44 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
 class PetStateScreen extends StatelessWidget {
   final String state;
   final String description;
+  final Color bgColor;
+  final Color textColor;
 
-  const PetStateScreen({super.key, required this.state, required this.description});
+  const PetStateScreen({super.key, required this.state, required this.description, required this.bgColor, required this.textColor});
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
+    return Container(
+      color: bgColor,
+      child: Center(
+      child: Padding( 
+        padding: const 
+        EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               state,
-              style: Theme.of(context).textTheme.headlineMedium,
+              style: TextStyle(
+                fontSize:28,
+                fontWeight:
+          FontWeight.bold,
+            color: textColor,
+              ),
             ),
             const SizedBox(height: 10),
             Text(
               description,
-              style: Theme.of(context).textTheme.bodyLarge,
-              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 18,
+                color: textColor,
+                )
+              ,textAlign:
+              TextAlign.center,
             ),
           ],
         ),
+      ),
       ),
     );
   }
